@@ -27,37 +27,96 @@
         var wins = 0;
         var loss = 0;
         var guessesLeft = 9;
-    //set array of possible computer guesses 
-        var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s"];
+        //create array to store user guesses
+        var userGuessArray = [];
+        
+        //create HTML string from an array
+        function createArrayString(userGuessArray) {
+            var string = ""; //initialize string to a blank value
+            var arrayLength = userGuessArray.length;
+            for (i = 0; i < arrayLength; i++) {
+                string = (string + array[i] + ", ");
+            }
+            return string;
+        }
+// //create HTML string from an array
+// function createArrayString(array) {
+//             var string = ""; //initialize string to a blank value
+//             var arrayLength = array.length;
+//             for (i = 0; i < arrayLength; i++) {
+//                 string = (string + array[i] + ", ");
+//             }
+//             return string;
+//         }
+// //create and then display HTML string from an array
+//                     //set HTML to display the user guesses
+//                     var userGuessesHTML = document.getElementById("user-guesses")
+//                     guessesHTMLString = createArrayString(pastUserGuesses);
+//                     userGuessesHTML.innerHTML = (" " + guessesHTMLString + " ");
+
+
+        //create and then display HTML string from an array
+            //set HTML to display the user guesses
+            var guesseshtml= document.getElementById("soFar");
+            guessesHTMLString = createArrayString(userGuessArray);
+            guesseshtml.innerHTML = (" " + guessesHTMLString + " ");
+
+
+
+    //determine how to obtain user guess(which key is pressed)
+    // write function to run when user makes a letter choice
     
-    //determines the computers guess   
-        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-            console.log(computerGuess);
-        
-    //determine user guess(which key is pressed)
-        var userGuess = event.key;
-        
-        //create array of user guesses
+        document.onkeyup = function (event) {
+            
+            var userGuess = event.key;  
+            console.log(userGuess);    
+           
+            
+            
             //add each user guess to array
-            //when user reaches 9 guesses reset game
-        //determine if user guess matches the computers guess
-            // make decideWinner(userGuess,computerGuess) function
+            userGuessArray.push(userGuess);
+             
+             console.log(userGuessArray);  
+       
+            //set array of possible computer guesses 
+            var computerChoices = 'abcdefghijklmnopqrstuvwxyz'.split('');
+        
+            //determine the computers guess   
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+                console.log(computerGuess);         
+            //determine if userGuess was correct 
+            decideWin(userGuess,computerGuess);
+                           
+        };
+
+
+        // make decideWinner(userGuess,computerGuess) function
+        function decideWin(userGuess,computerGuess){
+            //determine if user guess matches the computers guess
             //IF  userGuess ==computerGuess, 
-                // end game 
-                    //refresh guesses left to 9
+            if(userGuess===computerGuess){
+                    //reset guesses left to 9
                     //increase win +1
-                //ELSE IF 
-                    //add userGuess to array
-                    // decrease guessesLeft -1
-                //ELSE
-                    //guessleft==0
-                        //increase loss +1
-                        //reset guesses left to 9
-
-
-
-                
-
+            }          
+                //ELSE IF user still has guesses left
+            // else if{
+                    
+            // // for(userGuessArray=0; i < userGuessArray.length; i++)
+            // //         // decrease guessesLeft -1
+            // //         
+            // }
+                 
+            //     //ELSE
+            //         //guessleft==0
+            // else(userGuessList.length==9){
+            //             //increase loss +1
+            //             //reset guesses left to 9
+            //         }
+                       
+        
+        
+            };
+    
 
     </script>
     

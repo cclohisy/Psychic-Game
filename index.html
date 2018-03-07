@@ -9,30 +9,55 @@
 </head>
 
 <body>
+    
+    <!-- write page content  -->
     <header> <h2>The Psychic Game</h2></header>
-        <p>Guess what letter I am thinking of... 
-
-        </p>
+        <p>Guess what letter I am thinking of...</p>
+        <br>
+        <p> Wins: <span id="wins">0</span></p>
+        <br>
+        <p>Losses: <span id="loss">0</span></p>
+        <br>
+        <p>Guesses Left: <span id="remainingGuess">9</span></p>
+        <br>
+        <p>Your Guesess so far: <span id="soFar"></span></p>
     
     <script>
-        //set forever for loop  for entire game
-        var wins = 0
-        var loss = 0
-        var
-        while(true){
-
-            // determine user guess
-                //set user guess limit to 9
+    //set initial win/loss/guesses left count
+        var wins = 0;
+        var loss = 0;
+        var guessesLeft = 9;
+    //set array of possible computer guesses 
+        var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s"];
+    
+    //determines the computers guess   
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            console.log(computerGuess);
         
-            //set an array of all possible computer guesses
+    //determine user guess(which key is pressed)
+        var userGuess = event.key;
+        
+        //create array of user guesses
+            //add each user guess to array
+            //when user reaches 9 guesses reset game
+        //determine if user guess matches the computers guess
+            // make decideWinner(userGuess,computerGuess) function
+            //IF  userGuess ==computerGuess, 
+                // end game 
+                    //refresh guesses left to 9
+                    //increase win +1
+                //ELSE IF 
+                    //add userGuess to array
+                    // decrease guessesLeft -1
+                //ELSE
+                    //guessleft==0
+                        //increase loss +1
+                        //reset guesses left to 9
 
-            //write function that determines the letter computers guessed
-                //determine if user guess matches the computers guess
-                    // make decideWinner(userGuess,computerGuess) function
-                    //IF  userGuess ==computerGuess, 
-                    // 
+
+
                 
-    };
+
 
     </script>
     

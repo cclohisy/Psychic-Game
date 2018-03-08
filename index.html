@@ -18,7 +18,7 @@
         <br>
         <p>Losses: <span id="loss">0</span></p>
         <br>
-        <p>Guesses Left: <span id="remainingGuess">9</span></p>
+        <p>Remaining Guesses: <span id="remainingGuess">9</span></p>
         <br>
         <p>Your Guesess so far: <span id="soFar"></span></p>
     
@@ -35,80 +35,91 @@
         
         //determine the computers guess   
         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-            console.log(computerGuess);         
-        //determine if userGuess was correct 
+            console.log("comp guesss" + computerGuess);       
+              
 
     //determine how to obtain user guess(which key is pressed)
-    // write function to run when user makes a letter choice
+    //write function to run when user makes a letter choice
     
         document.onkeyup = function (event) {
             
             var userGuess = event.key;  
-            console.log(userGuess);                
+            console.log("user guess " + userGuess);                
             
             //add each user guess to array
             userGuessArray.push(userGuess);
              
-             console.log(userGuessArray);  
-       
-            // //set array of possible computer guesses 
-            // var computerChoices = 'abcdefghijklmnopqrstuvwxyz'.split('');
-        
-            // //determine the computers guess   
-            // var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-            //     console.log(computerGuess);         
-            // //determine if userGuess was correct 
-            decideWin(userGuess,computerGuess);
+             console.log("guess array " + userGuessArray);  
+
+             decideWin(userGuess,computerGuess);
                            
         };
 
-        //make funtion to reset game
-        function reset(){
-            // clear user guess array- display on page 
-            //set guesses left back to 9 -display on page
-            guessesLeft=9;
-            userGuessArray=[];
-            console.log(guessesLeft);
-            console.log(userGuessArray);
-
-        }
-
-
-        // make decideWinner(userGuess,computerGuess) function 
+    // make decideWinner(userGuess,computerGuess) function 
         function decideWin(userGuess,computerGuess){
             //determine if user guess matches the computers guess
             //IF  userGuess ==computerGuess, 
-            for(i=0; i < userGuessArray.length; i++){
                 if(userGuess===computerGuess){
                     //increase wins +1
-                    win +=1 ;
-                    //display new vaule of win in html
-                    // document.getElementById("wins")=
-                    console.log(win);
+                    win ++ ;
+                        //get html element to display win 
+                        document.getElementById("wins").innerHTML = win;
+                        //display new vaule of win in html
+                        console.log("win count" + win);
                     //call reset function
-                    reset();
+                        reset();                   
                 }
-                //ELSE IF user still has guesses left                
-                else if(userGuess != computerGuess){
+
+                //IF user still has guesses left                
+                if(guessesLeft > 0){
                       // decrease guessesLeft -1
-                      guessesLeft -=1 ;
-                      console.log(guessesLeft)
-                }
-                else if(guesseLeft ==0){
-                    //increase loss +1
-                    loss +=1 ;
-                    console.log(loss);
-                    //display new vaule of loss in html
+                      guessesLeft -- ;
+                       //get html element to display guessesLeft 
+                       document.getElementById("remainingGuess").innerHTML = guessesLeft;
+                        document.getElementById("soFar").innerHTML = userGuessArray;
 
-                    //run reset function
-                    reset();
-
-
-                }
+                            console.log("win count" + win);
+                            console.log("guesses left " + guessesLeft)
                 }
                 
+                //ELSE user maxed out guesses
+                else{
+                    //increase loss +1
+                    loss ++ ;
+                    console.log("loss count" + loss);
+                    document.getElementById("loss").innerHTML = loss;
+
+                    //call reset function
+                    reset();
+
+                   
+                        }
             };
-    
+            
+                
+            // };
+       //make funtion to reset game
+        function reset(){
+
+        //determine the computers guess   
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            console.log("comp guess " + computerGuess);       
+
+         // clear user guess array 
+            userGuessArray=[];
+            console.log("guess array " + userGuessArray); 
+            //get html element to display array
+            //display new value of array 
+            
+        //set guesses left back to 9
+            guessesLeft=9;            
+            console.log("guesses left " + guessesLeft)
+            //get html element to display guessesLeft 
+           
+
+        
+        
+        };
                 
                     
                 

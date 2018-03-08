@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychic Game</title>
 
+    <script src="assets/javscript/game.js"></script>
+
+
 </head>
 
 <body>
@@ -32,119 +35,6 @@
     <p>Your Guesess so far:
         <span id="soFar"></span>
     </p>
-
-    <script>
-        //set initial win/loss/guesses left count
-        var win = 0;
-        var loss = 0;
-        var guessesLeft = 9;
-        //create array to store user guesses
-        var userGuessArray = [];
-
-        //set array of possible computer guesses 
-        var computerChoices = 'abcdefghijklmnopqrstuvwxyz'.split('');
-
-        //determine the computers guess   
-        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        console.log("comp guesss " + computerGuess);
-
-
-        //determine how to obtain user guess(which key is pressed)
-        //write function to run when user makes a letter choice
-
-        document.onkeyup = function (event) {
-
-            var userGuess = event.key;
-            console.log("user guess " + userGuess);
-
-            //add each user guess to array
-            userGuessArray.push(userGuess);
-
-            console.log("guess array " + userGuessArray);
-
-            decideWin(userGuess, computerGuess);
-
-        };
-
-        // make decideWinner(userGuess,computerGuess) function 
-        function decideWin(userGuess, computerGuess) {
-            //determine if user guess matches the computers guess
-            //IF  userGuess ==computerGuess, 
-            console.log(userGuess + computerGuess)
-            if (userGuess === computerGuess) {
-                //increase wins +1
-                win++;
-                //get html element to display win 
-                document.getElementById("wins").innerHTML = win;
-                //display new vaule of win in html
-                console.log("win count" + win);
-                //call reset function
-                reset();
-            }
-
-            //IF user still has guesses left                
-            else {
-                // decrease guessesLeft -1
-                guessesLeft--;
-                //get html element to display guessesLeft 
-                document.getElementById("remainingGuess").innerHTML = guessesLeft;
-                document.getElementById("soFar").innerHTML = userGuessArray;
-                console.log("guesses left " + guessesLeft)
-            }
-
-            //ELSE user maxed out guesses
-            if (guessesLeft == 0) {
-                //increase loss +1
-                loss++;
-                console.log("loss count" + loss);
-                document.getElementById("loss").innerHTML = loss;
-
-                //call reset function
-                reset();
-
-
-            }
-        };
-
-
-        // };
-        //make funtion to reset game
-        function reset() {
-
-            //determine the computers guess   
-            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-            console.log("comp guess " + computerGuess);
-
-            // clear user guess array 
-            userGuessArray = [];
-            document.getElementById("soFar").innerHTML = userGuessArray;
-
-            console.log("guess array " + userGuessArray);
-            //get html element to display array
-            //display new value of array 
-
-            //set guesses left back to 9
-            guessesLeft = 9;
-            document.getElementById("remainingGuess").innerHTML = guessesLeft;
-            console.log("guesses left " + guessesLeft)
-            //get html element to display guessesLeft 
-
-
-
-        };
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
 
 </body>
 
